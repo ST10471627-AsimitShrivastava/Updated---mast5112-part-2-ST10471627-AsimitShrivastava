@@ -859,3 +859,103 @@ const AddMenuScreen = ({
     </SafeAreaView>
   );
 }
+
+/**
+ * Title: App shell with navigation
+ * Responsibility: Entry point that controls welcome screen and tabbed screens
+ * Simplicity: Local state machine to jump from welcome to main
+ */
+
+/*CODE ATTRIBUTION*/
+/*TITLE: React Navigation – NavigationContainer and Tab Navigator Documentation*/
+/*AUTHOR: React Navigation Contributors*/
+/*DATE: 15/10/2025*/
+/*VERSION: 6.1*/
+/*AVAILABLE: https://reactnavigation.org/docs/bottom-tab-navigator */
+
+/*CODE ATTRIBUTION*/
+/*TITLE: React and TypeScript – useState Hook Typing and State Management*/
+/*AUTHOR: Microsoft Corporation*/
+/*DATE: 15/10/2025*/
+/*VERSION: 5.3*/
+/*AVAILABLE: https://www.typescriptlang.org/docs/handbook/react.html */
+
+/*CODE ATTRIBUTION*/
+/*TITLE: React Native – App Structure and Navigation Setup*/
+/*AUTHOR: Meta Platforms, Inc.*/
+/*DATE: 15/10/2025*/
+/*VERSION: 0.76*/
+/*AVAILABLE: https://reactnative.dev/docs/navigation */
+
+
+// The root App component controls the navigation flow and global application state.
+// It determines which screen is currently visible (Welcome or Main Menu) and manages shared data across tabs.
+const App = () => {
+
+  // ==============================
+  // STATE MANAGEMENT
+  // ==============================
+
+  // `current` tracks the current phase of the app — either the welcome screen or the main interface.
+  // The union type `'welcome' | 'main'` restricts possible values to prevent invalid navigation states.
+  const [current, setCurrent] = useState<'welcome' | 'main'>('welcome');
+
+  // `menuItems` stores all dishes available in the restaurant menu.
+  // It is initialized with `predefinedItems` and can be updated dynamically when users add new dishes.
+  const [menuItems, setMenuItems] = useState<MenuItem[]>(predefinedItems);
+
+
+  // ==============================
+  // NESTED COMPONENT: MENU TABS
+  // ==============================
+
+  // MenuTabs defines a bottom-tab navigation structure containing two main screens:
+  // - Home: Displays all menu sections (Starters, Mains, Desserts)
+  // - Add Menu: Allows adding new dishes interactively
+  const MenuTabs = () => (
+    <Tab.Navigator
+      // screenOptions configure how each tab behaves and looks globally
+      screenOptions={{
+        headerShown: false,                             // Hides header for a full-screen modern layout
+        tabBarActiveTintColor: TOKENS.color.gold,       // Active tab icon and label color
+        tabBarInactiveTintColor: TOKENS.color.textMuted,// Muted tone for inactive tabs
+        tabBarStyle: {                                  // Customizes tab bar appearance
+          backgroundColor: TOKENS.color.card,           // Deep background to match app theme
+          borderTopWidth: 0,                            // Removes default Android border line
+          height: 70,                                   // Enlarges bar for better touch ergonomics
+          paddingBottom: 8,                             // Adds breathing space for icons
+          paddingTop: 8,
+        },
+        tabBarLabelStyle: { fontSize: 12, fontWeight: '600' }, // Defines consistent typography
+      }}
+    >
+
+      {/* ==============================
+          TAB 1: HOME SCREEN
+          Displays categorized menu items with images and pricing.
+          The 🏠 icon visually reinforces the tab purpose.
+      ============================== */}
+      <Tab.Screen
+        name="Home"
+        options={{ tabBarIcon: () => <Text style={{ fontSize: 24 }}>🏠</Text> }}
+        children={() => <HomeScreen menuItems={menuItems} />} // Passes state as props to HomeScreen
+      />
+
+      {/* ==============================
+          TAB 2: ADD MENU SCREEN
+          Allows users to input new dishes, prices, and images.
+          The ➕ icon visually represents adding new content.
+      ============================== */}
+      <Tab.Screen
+        name="Add Menu"
+        options={{ tabBarIcon: () => <Text style={{ fontSize: 26 }}>➕</Text> }}
+        children={() => (
+          <AddMenuScreen
+            menuItems={menuItems}
+            setMenuItems={setMenuItems} // Shares updater function to modify parent state
+          />
+        )}
+      />
+    </Tab.Navigator>
+  );
+

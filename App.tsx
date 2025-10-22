@@ -1069,4 +1069,475 @@ const styles = StyleSheet.create({
   // WELCOME SCREEN STYLES
   // ==============================
 
- 
+  // The main container for the Welcome screen.
+  // `flex: 1` ensures the background image covers the full screen height and width.
+  welcomeContainer: { flex: 1 },
+
+  // Semi-transparent overlay placed above the background image.
+  // Provides a cinematic darkened effect to enhance text legibility.
+  // Centers all child elements both vertically and horizontally.
+  welcomeOverlay: {
+    flex: 1,
+    backgroundColor: 'rgba(0,0,0,0.55)', // Transparent black overlay for visual contrast
+    justifyContent: 'center',             // Centers vertically
+    alignItems: 'center',                 // Centers horizontally
+    padding: TOKENS.space.lg,             // Adds internal padding for breathing space
+  },
+
+  // Central card displaying all welcome text and features.
+  // Uses a semi-transparent background with soft shadows to mimic a glass-panel aesthetic.
+  welcomeCard: {
+    width: Math.min(560, width - TOKENS.space.lg * 2), // Ensures responsive width (never exceeds 560px)
+    backgroundColor: 'rgba(18,19,23,0.82)',           // Subtle charcoal transparency for depth
+    padding: TOKENS.space.xl,                         // Internal spacing consistent with brand design system
+    borderRadius: TOKENS.radius.xl,                   // Rounded corners for elegance
+    borderWidth: 1,                                   // Thin border for definition
+    borderColor: '#2a2b38',                           // Cool gray border tone complements dark theme
+    ...TOKENS.shadow.card,                            // Applies soft shadow for dimensional depth
+  },
+
+  // Small uppercase heading above the main brand name (e.g., “WELCOME TO”).
+  // Helps establish brand hierarchy by using smaller text and wide letter spacing.
+  brandOverline: {
+    color: TOKENS.color.goldSoft,                     // Soft gold tone for subtle shimmer
+    letterSpacing: 2,                                 // Spaced-out letters for elegance
+    fontSize: 14,
+    marginBottom: TOKENS.space.xs,                    // Separation from title below
+    textAlign: 'center',                              // Centers all brand text for balance
+  },
+
+  // Main brand title text “CHRISTOFFEL” — large and bold for prominence.
+  // Acts as the central focal point of the Welcome screen.
+  brandTitle: {
+    color: TOKENS.color.gold,                         // Gold symbolizes luxury and craftsmanship
+    fontSize: 40,                                     // Oversized font to convey prestige
+    fontWeight: '900',                                // Heavy weight reinforces brand authority
+    textAlign: 'center',
+    marginBottom: TOKENS.space.sm,
+  },
+
+  // Subheading describing the restaurant’s philosophy.
+  // Uses smaller font and muted tone to create a secondary information layer.
+  brandSubtitle: {
+    color: TOKENS.color.textMuted,                    // Muted gray for soft readability
+    textAlign: 'center',
+    fontSize: 15,
+    marginBottom: TOKENS.space.lg,
+  },
+
+  // Container for the three feature items (Fine dining, Chef-driven, Premium quality).
+  // Horizontal layout with even spacing between elements.
+  featureRow: {
+    flexDirection: 'row',                             // Places emojis and labels in a single line
+    justifyContent: 'space-between',                  // Evenly distributes feature icons across row
+    marginBottom: TOKENS.space.xl,
+  },
+
+  // Wrapper for each individual feature element (emoji + text).
+  // Uses centered alignment for visual consistency.
+  feature: {
+    alignItems: 'center',
+    flex: 1,                                          // Ensures each feature takes equal width space
+  },
+
+  // Feature icon (emoji) style.
+  // Large size enhances visual recognition and adds personality to the brand experience.
+  featureEmoji: {
+    fontSize: 30,
+    marginBottom: TOKENS.space.xs,
+  },
+
+  // Small descriptive text underneath each emoji.
+  // Uses muted color to keep focus on the icon above.
+  featureText: {
+    color: TOKENS.color.textMuted,
+    fontSize: 12,
+  },
+
+  // Call-To-Action (CTA) button styling for “Enter the Menu”.
+  // Centralized gold button providing strong contrast against dark background.
+  cta: {
+    alignSelf: 'center',                              // Centers button horizontally within card
+    backgroundColor: TOKENS.color.gold,               // Gold accent color reinforces brand tone
+    paddingVertical: TOKENS.space.sm + 2,             // Balanced vertical spacing for comfortable tap area
+    paddingHorizontal: TOKENS.space.xl,
+    borderRadius: TOKENS.radius.lg,                   // Rounded edges create friendly, elegant aesthetic
+  },
+
+  // CTA button text styling.
+  // High-contrast dark text over gold background improves legibility.
+  ctaText: {
+    color: '#141414',                                 // Deep black for contrast against gold
+    fontWeight: '800',                                // Bold to emphasize importance
+    fontSize: 16,
+    letterSpacing: 0.5,                               // Slight tracking for premium typography effect
+  },
+
+  // Shared screen surface
+  screen: { flex: 1, backgroundColor: TOKENS.color.bg },
+
+  // ==============================
+  // TOP BAR STYLES
+  // ==============================
+
+  // The top navigation bar displayed across the app’s Home screen.
+  // It uses flexbox alignment to position brand elements on the left and count summary on the right.
+  topBar: {
+    backgroundColor: TOKENS.color.card,          // Deep charcoal tone matching global theme
+    paddingHorizontal: TOKENS.space.lg,          // Adds side padding for content spacing
+    paddingVertical: TOKENS.space.md,            // Provides vertical breathing room
+    flexDirection: 'row',                        // Aligns child components horizontally
+    justifyContent: 'space-between',             // Distributes brand info and item count evenly
+    alignItems: 'center',                        // Centers elements vertically
+    borderBottomColor: TOKENS.color.divider,     // Subtle divider line at bottom
+    borderBottomWidth: 1,                        // Minimal 1px border for visual separation
+  },
+
+  // Container grouping the brand emoji and text together on the left of the top bar.
+  brandLeft: {
+    flexDirection: 'row',                        // Arranges emoji and text horizontally
+    alignItems: 'center',                        // Centers vertically for balance
+    gap: TOKENS.space.sm,                        // Small gap between emoji and text
+  },
+
+  // Chef emoji adds personality and visual recognition for the brand.
+  topEmoji: {
+    fontSize: 36,
+    marginRight: TOKENS.space.sm,                // Separates emoji from brand name
+  },
+
+  // Brand title text, bold and gold for brand prominence.
+  topTitle: {
+    color: TOKENS.color.gold,
+    fontWeight: '900',
+    fontSize: 18,
+  },
+
+  // Secondary subtitle below brand title with muted tone to maintain hierarchy.
+  topSubtitle: {
+    color: TOKENS.color.textMuted,
+    fontSize: 12,
+    marginTop: 2,                                // Small offset to separate title and subtitle
+  },
+
+  // Count indicator (right side of top bar) displaying the total menu item count.
+  // The pill shape emphasizes interactivity and data display.
+  countPill: {
+    alignItems: 'center',
+    backgroundColor: '#181920',                  // Subtle contrast to background
+    paddingHorizontal: TOKENS.space.md,
+    paddingVertical: TOKENS.space.xs,
+    borderRadius: 24,                            // Rounded for pill shape
+    borderWidth: 1,
+    borderColor: '#242536',
+  },
+
+  // Numeric count styled in bold gold for clarity.
+  countNumber: {
+    color: TOKENS.color.gold,
+    fontWeight: '800',
+    fontSize: 18,
+  },
+
+  // Label text below count for context.
+  countLabel: {
+    color: TOKENS.color.textMuted,
+    fontSize: 11,
+  },
+
+  // ==============================
+  // HERO BANNER STYLES
+  // ==============================
+
+  // Prominent content area introducing the app’s theme or section.
+  // Uses padding, soft borders, and color contrast for emphasis.
+  hero: {
+    marginHorizontal: TOKENS.space.lg,           // Even horizontal margins for alignment
+    marginTop: TOKENS.space.lg,
+    marginBottom: TOKENS.space.lg,
+    backgroundColor: TOKENS.color.cardAlt,       // Slightly lighter shade for subtle contrast
+    borderRadius: TOKENS.radius.lg,
+    padding: TOKENS.space.lg,
+    borderWidth: 1,
+    borderColor: '#232532',
+  },
+
+  // Hero title text styled for prominence.
+  heroTitle: {
+    color: TOKENS.color.text,
+    fontWeight: '800',
+    fontSize: 22,
+    marginBottom: TOKENS.space.xs,
+  },
+
+  // Supporting text under hero title, smaller and muted for secondary focus.
+  heroText: {
+    color: TOKENS.color.textMuted,
+    fontSize: 14,
+  },
+
+  // ==============================
+  // SECTION HEADER STYLES
+  // ==============================
+
+  // Container for each course section (Starters, Mains, Desserts).
+  section: {
+    paddingHorizontal: TOKENS.space.lg,
+    marginBottom: TOKENS.space.lg,
+  },
+
+  // Aligns emoji and section title horizontally with consistent spacing.
+  sectionHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: TOKENS.space.sm,
+    marginBottom: TOKENS.space.md,
+  },
+
+  // Emoji adds visual recognition for each category.
+  sectionEmoji: {
+    fontSize: 26,
+  },
+
+  // Bold title text for section heading.
+  sectionTitle: {
+    color: TOKENS.color.text,
+    fontWeight: '800',
+    fontSize: 20,
+  },
+
+  // Displays the total number of dishes in the category.
+  sectionCount: {
+    color: TOKENS.color.goldSoft,
+    fontSize: 16,
+  },
+
+  // ==============================
+  // MENU CARD STYLES
+  // ==============================
+
+  // Individual menu item container styled as an elegant card with shadow.
+  menuCard: {
+    backgroundColor: TOKENS.color.card,
+    borderRadius: TOKENS.radius.lg,
+    overflow: 'hidden',                          // Ensures image corners follow rounded shape
+    marginBottom: TOKENS.space.md,
+    borderWidth: 1,
+    borderColor: '#22232e',
+    ...TOKENS.shadow.card,                       // Adds subtle elevation and shadow for depth
+  },
+
+  // Menu item image (top of each card) — responsive to screen width.
+  menuImage: {
+    width: '100%',
+    height: Math.min(220, width * 0.55),
+  },
+
+  // Placeholder displayed when no image URL is provided.
+  menuImagePlaceholder: {
+    backgroundColor: '#1a1b23',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+
+  // Text for placeholder image area.
+  menuImagePlaceholderText: {
+    color: TOKENS.color.textMuted,
+  },
+
+  // Content area containing title, price, and description text.
+  menuBody: {
+    padding: TOKENS.space.md,
+  },
+
+  // Header row within menu body, aligns dish name and price horizontally.
+  menuHeaderRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+
+  // Dish name styled prominently.
+  menuTitle: {
+    color: TOKENS.color.text,
+    fontWeight: '800',
+    fontSize: 18,
+    flex: 1,                                     // Ensures title expands without overlapping price
+    paddingRight: TOKENS.space.sm,
+  },
+
+  // Price displayed in bold gold for premium look.
+  menuPrice: {
+    color: TOKENS.color.gold,
+    fontWeight: '900',
+    fontSize: 18,
+  },
+
+  // Description text for each dish.
+  menuDesc: {
+    color: TOKENS.color.textMuted,
+    marginTop: TOKENS.space.xs,
+    lineHeight: 20,                              // Improves readability for multi-line text
+  },
+
+  // Footer row showing the course badge and “View details” link.
+  menuFooterRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    marginTop: TOKENS.space.md,
+  },
+
+  // Small pill-shaped label indicating dish course (e.g., Starter).
+  badge: {
+    paddingHorizontal: TOKENS.space.md,
+    paddingVertical: TOKENS.space.xs,
+    borderRadius: 999,                           // Fully rounded capsule
+    borderWidth: 1,
+    borderColor: '#2b2d3a',
+  },
+
+  // Text inside the badge styled in gold.
+  badgeText: {
+    color: TOKENS.color.gold,
+    fontWeight: '700',
+    fontSize: 12,
+  },
+
+  // “View details” link styled in subtle gold.
+  seeMore: {
+    color: TOKENS.color.goldSoft,
+    fontSize: 12,
+  },
+
+  // ==============================
+  // FORM STYLES
+  // ==============================
+
+  // Main card layout for form fields in AddMenuScreen.
+  formCard: {
+    margin: TOKENS.space.lg,
+    backgroundColor: TOKENS.color.cardAlt,
+    padding: TOKENS.space.lg,
+    borderRadius: TOKENS.radius.lg,
+    borderWidth: 1,
+    borderColor: '#242637',
+  },
+
+  // Form title styled prominently at top.
+  formTitle: {
+    color: TOKENS.color.text,
+    fontWeight: '900',
+    fontSize: 22,
+    textAlign: 'center',
+    marginBottom: TOKENS.space.xs,
+  },
+
+  // Subtitle providing user instructions.
+  formSubtitle: {
+    color: TOKENS.color.textMuted,
+    textAlign: 'center',
+    marginBottom: TOKENS.space.lg,
+  },
+
+  // Groups each input and its label together with spacing.
+  inputGroup: {
+    marginBottom: TOKENS.space.md,
+  },
+
+  // Label text for each form field.
+  inputLabel: {
+    color: TOKENS.color.gold,
+    fontWeight: '700',
+    marginBottom: TOKENS.space.xs,
+  },
+
+  // Shared base style for all TextInput fields.
+  input: {
+    backgroundColor: '#141520',
+    borderWidth: 1,
+    borderColor: '#26283a',
+    color: TOKENS.color.text,
+    padding: TOKENS.space.md,
+    borderRadius: TOKENS.radius.md,
+  },
+
+  // Expanded text area field for longer descriptions.
+  textArea: {
+    minHeight: 100,
+    textAlignVertical: 'top',                    // Ensures text starts at the top for better UX
+  },
+
+  // Container styling for Picker dropdown field.
+  pickerShell: {
+    backgroundColor: '#141520',
+    borderWidth: 1,
+    borderColor: '#26283a',
+    borderRadius: TOKENS.radius.md,
+    overflow: 'hidden',                          // Clips dropdown edges neatly
+  },
+
+  // Text color within the Picker dropdown.
+  picker: {
+    color: TOKENS.color.text,
+  },
+
+  // Helper note providing form guidance below input.
+  helperNote: {
+    color: TOKENS.color.textMuted,
+    fontSize: 12,
+    marginTop: 6,
+  },
+
+  // ==============================
+  // PREVIEW IMAGE STYLES
+  // ==============================
+
+  // Image preview area for the AddMenuScreen.
+  // Rounded corners and border align with card aesthetics.
+  preview: {
+    width: '100%',
+    height: Math.min(220, width * 0.55),
+    borderRadius: TOKENS.radius.md,
+    borderWidth: 1,
+    borderColor: '#242637',
+  },
+
+  // ==============================
+  // BUTTON STYLES
+  // ==============================
+
+  // Primary action button (e.g., “Add to menu”).
+  primaryBtn: {
+    backgroundColor: TOKENS.color.gold,          // Brand gold for visual prominence
+    paddingVertical: TOKENS.space.md,
+    borderRadius: TOKENS.radius.md,
+    alignItems: 'center',
+    ...TOKENS.shadow.card,                       // Adds subtle depth for tap affordance
+  },
+
+  // Text for primary button.
+  primaryBtnText: {
+    color: '#141414',                            // Dark text contrasts against gold
+    fontWeight: '900',
+    fontSize: 16,
+  },
+
+  // Secondary button (e.g., “Clear form”) with outlined design.
+  ghostBtn: {
+    marginTop: TOKENS.space.sm,
+    borderWidth: 1,
+    borderColor: '#2a2c3d',
+    paddingVertical: TOKENS.space.md,
+    borderRadius: TOKENS.radius.md,
+    alignItems: 'center',
+  },
+
+  // Muted text color differentiates it from the main action.
+  ghostBtnText: {
+    color: TOKENS.color.textMuted,
+    fontWeight: '700',
+  },
+});
+
+export default App;

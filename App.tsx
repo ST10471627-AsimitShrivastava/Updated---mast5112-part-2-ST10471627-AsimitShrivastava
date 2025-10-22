@@ -503,3 +503,31 @@ const HomeScreen = ({ menuItems }: { menuItems: MenuItem[] }) => {
     );
   };
 
+  // A presentational section wrapper so that each course grouping has consistent spacing
+
+  /*CODE ATTRIBUTION*/
+  /*TITLE: React Native – FlatList and Rendering Lists*/
+  /*AUTHOR: Meta Platforms, Inc.*/
+  /*DATE: 15/10/2025*/
+  /*VERSION: 0.76*/
+  /*AVAILABLE: https://reactnative.dev/docs/flatlist */
+
+  /*CODE ATTRIBUTION*/
+  /*TITLE: React Native – Layout and View Composition*/
+  /*AUTHOR: Meta Platforms, Inc.*/
+  /*DATE: 15/10/2025*/
+  /*VERSION: 0.76*/
+  /*AVAILABLE: https://reactnative.dev/docs/view */
+
+  /*CODE ATTRIBUTION*/
+  /*TITLE: TypeScript React – Function Components and Props Typing*/
+  /*AUTHOR: Microsoft Corporation*/
+  /*DATE: 15/10/2025*/
+  /*VERSION: 5.3*/
+  /*AVAILABLE: https://www.typescriptlang.org/docs/handbook/react.html */
+
+  // Defines the Section functional component.
+  // Each Section groups and displays a specific menu category (e.g., Starters, Mains, Desserts).
+  // It uses the FlatList component to render multiple menu cards under a single heading.
+
+  

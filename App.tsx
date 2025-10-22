@@ -395,3 +395,31 @@ const WelcomeScreen = ({ navigation }: any) => {
   );
 };
 
+/**
+ * Title: Home screen
+ * Responsibility: Show sections for Starters, Mains, and Desserts with elegant cards
+ * Approach: Compute course filtered lists once per render using useMemo for efficiency
+ */
+
+/*CODE ATTRIBUTION*/
+/*TITLE: React – useMemo Hook Documentation*/
+/*AUTHOR: Meta Platforms, Inc.*/
+/*DATE: 15/10/2025*/
+/*VERSION: 18.2.0*/
+/*AVAILABLE: https://react.dev/reference/react/useMemo */
+
+/*CODE ATTRIBUTION*/
+/*TITLE: React Native – FlatList Rendering and Performance Optimization*/
+/*AUTHOR: Meta Platforms, Inc.*/
+/*DATE: 15/10/2025*/
+/*VERSION: 0.76*/
+/*AVAILABLE: https://reactnative.dev/docs/flatlist */
+
+/*CODE ATTRIBUTION*/
+/*TITLE: TypeScript Handbook – Function and Object Typing*/
+/*AUTHOR: Microsoft Corporation*/
+/*DATE: 15/10/2025*/
+/*VERSION: 5.3*/
+/*AVAILABLE: https://www.typescriptlang.org/docs/handbook/2/functions.html */
+
+

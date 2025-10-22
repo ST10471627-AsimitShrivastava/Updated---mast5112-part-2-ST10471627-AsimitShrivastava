@@ -319,3 +319,79 @@ const predefinedItems: MenuItem[] = [
   },
 ];
 
+/**
+ * Title: Welcome screen
+ * Intent: First brand touch with refined fine dining identity
+ * Design: Gold on deep charcoal, subtle blur overlay for a cinematic effect
+ */
+
+/*CODE ATTRIBUTION*/
+/*TITLE: React Native – ImageBackground and Accessibility Documentation*/
+/*AUTHOR: Meta Platforms, Inc.*/
+/*DATE: 15/10/2025*/
+/*VERSION: 0.76*/
+/*AVAILABLE: https://reactnative.dev/docs/imagebackground */
+
+// Defines the WelcomeScreen functional component
+// Displays the restaurant’s welcome page before navigating to the main menu
+// The component introduces branding, visual style, and navigation entry point
+const WelcomeScreen = ({ navigation }: any) => {
+  return (
+    // ImageBackground allows using an image as a full-screen background
+    // The 'source' prop specifies a remote Unsplash image for the backdrop
+    // 'resizeMode="cover"' ensures the image scales proportionally and fills the screen
+    <ImageBackground
+      source={{ uri: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=1600' }}
+      style={styles.welcomeContainer}
+      resizeMode="cover"
+    >
+      {/* The semi-transparent overlay darkens the background for readability */}
+      <View style={styles.welcomeOverlay}>
+        {/* The main content card: uses background blur, rounded edges, and centered text */}
+        <View style={styles.welcomeCard}>
+          {/* Overline text introducing the restaurant name */}
+          <Text style={styles.brandOverline}>WELCOME TO</Text>
+
+          {/* Large golden title to emphasize the restaurant’s name */}
+          <Text style={styles.brandTitle}>CHRISTOFFEL</Text>
+
+          {/* Subtitle describing the restaurant’s philosophy */}
+          <Text style={styles.brandSubtitle}>
+            Culinary excellence, seasonal ingredients, timeless technique
+          </Text>
+
+          {/* Row of icon features displaying key highlights: fine dining, chef quality, and premium service */}
+          <View style={styles.featureRow}>
+            {/* Each feature includes an emoji and a short descriptive label */}
+            <View style={styles.feature}>
+              <Text style={styles.featureEmoji}>🍽️</Text>
+              <Text style={styles.featureText}>Fine dining</Text>
+            </View>
+
+            <View style={styles.feature}>
+              <Text style={styles.featureEmoji}>👨‍🍳</Text>
+              <Text style={styles.featureText}>Chef driven</Text>
+            </View>
+
+            <View style={styles.feature}>
+              <Text style={styles.featureEmoji}>⭐</Text>
+              <Text style={styles.featureText}>Premium quality</Text>
+            </View>
+          </View>
+
+          {/* Primary call-to-action button — leads to the MenuTabs screen */}
+          {/* Uses accessibilityRole and accessibilityLabel to enhance screen reader support */}
+          <TouchableOpacity
+            accessibilityRole="button"
+            accessibilityLabel="Enter menu"
+            style={styles.cta}
+            onPress={() => navigation.navigate('MenuTabs')}
+          >
+            <Text style={styles.ctaText}>Enter the menu</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
+    </ImageBackground>
+  );
+};
+

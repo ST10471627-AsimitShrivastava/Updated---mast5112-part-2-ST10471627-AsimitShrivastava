@@ -642,3 +642,220 @@ const HomeScreen = ({ menuItems }: { menuItems: MenuItem[] }) => {
 // AddMenuScreen component allows users to manually add new menu items to the app.
 // It provides form fields for dish name, description, course category, price, and optional image URL.
 // Props: menuItems (existing list) and setMenuItems (state updater function from parent).
+const AddMenuScreen = ({
+  menuItems,
+  setMenuItems,
+}: {
+  menuItems: MenuItem[];                   // Array of current menu items passed down as a prop
+  setMenuItems: (items: MenuItem[]) => void; // Function to update the menu state in the parent component
+}) => {
+
+  // useState hooks store form input values locally before submission.
+  const [dishName, setDishName] = useState('');        // Tracks the name of the dish being added
+  const [description, setDescription] = useState('');  // Stores the text description entered by the user
+  const [course, setCourse] = useState<Course>('Starters'); // Default course type initialized as 'Starters'
+  const [price, setPrice] = useState('');              // Stores numeric price input as string (to validate later)
+  const [image, setImage] = useState('');              // Optional image URL input
+
+  // handleAdd validates input fields and adds a new menu item to the list
+  const handleAdd = () => {
+    // Validation Step 1: Ensure all required text fields are filled in
+    if (!dishName.trim() || !description.trim() || !price.trim()) {
+      Alert.alert('Missing fields', 'Please complete dish name, description, and price');
+      return; // Stops execution if any required field is empty
+    }
+
+    // Validation Step 2: Convert string price input to numeric value and ensure it's valid
+    const priceNum = parseFloat(price);
+    if (Number.isNaN(priceNum) || priceNum <= 0) {
+      Alert.alert('Invalid price', 'Please enter a valid numeric price greater than zero');
+      return; // Prevents invalid data from being added to the list
+    }
+
+    // Creates a new MenuItem object following the defined TypeScript interface.
+    // The unique ID is generated using the current timestamp.
+    const newItem: MenuItem = {
+      id: `user-${Date.now()}`,
+      dishName: dishName.trim(),
+      description: description.trim(),
+      course,
+      price: priceNum,
+      image: image.trim() || undefined, // Removes unnecessary spaces or omits if empty
+    };
+
+    // Updates the main menu list state by appending the new dish.
+    setMenuItems([...menuItems, newItem]);
+
+    // Resets all form fields to default values for user convenience.
+    setDishName('');
+    setDescription('');
+    setCourse('Starters');
+    setPrice('');
+    setImage('');
+
+    // Displays a success message to confirm the new dish was saved.
+    Alert.alert('Success', 'Menu item added');
+  };
+
+  // handleClear resets all input fields without saving data
+  const handleClear = () => {
+    setDishName('');
+    setDescription('');
+    setCourse('Starters');
+    setPrice('');
+    setImage('');
+  };
+
+  // The AddMenuScreen UI layout begins here.
+  // It uses React Native form elements to capture menu item details in a structured, scrollable form.
+  return (
+    // SafeAreaView ensures all content fits within the visible screen area,
+    // avoiding notches or UI overlaps on modern iOS and Android devices.
+    <SafeAreaView style={styles.screen}>
+
+      {/* KeyboardAvoidingView adjusts screen layout dynamically when the keyboard appears.
+        This prevents input fields from being hidden behind the keyboard.
+        The behavior prop ensures iOS uses 'padding' while Android layout remains default. */}
+      <KeyboardAvoidingView
+        behavior={Platform.select({ ios: 'padding', android: undefined })}
+        style={{ flex: 1 }}
+      >
+
+        {/* ScrollView enables vertical scrolling in case the form height exceeds screen space.
+          This ensures full accessibility on small screens or when the keyboard is open. */}
+        <ScrollView showsVerticalScrollIndicator={false}>
+
+          {/* The main card-style container for all input fields and buttons.
+            It applies visual grouping and shadow to create depth and focus. */}
+          <View style={styles.formCard}>
+
+            {/* Form heading provides the main title and instructional subtitle for clarity. */}
+            <Text style={styles.formTitle}>Add new menu item</Text>
+            <Text style={styles.formSubtitle}>
+              Keep names and descriptions concise for clarity
+            </Text>
+
+            {/* ==============================
+              FIELD 1: Dish Name Input
+              ============================== */}
+            <View style={styles.inputGroup}>
+              <Text style={styles.inputLabel}>Dish name</Text>
+              <TextInput
+                value={dishName}                           // Binds the field to dishName state variable
+                onChangeText={setDishName}                 // Updates state on every keystroke
+                placeholder="Enter dish name"              // Guides user on what to input
+                placeholderTextColor={TOKENS.color.textMuted} // Matches muted theme for better UI harmony
+                style={styles.input}
+              />
+            </View>
+
+            {/* ==============================
+              FIELD 2: Description Input
+              ============================== */}
+            <View style={styles.inputGroup}>
+              <Text style={styles.inputLabel}>Description</Text>
+              <TextInput
+                value={description}
+                onChangeText={setDescription}
+                placeholder="Describe the dish"
+                placeholderTextColor={TOKENS.color.textMuted}
+                style={[styles.input, styles.textArea]}     // Combines base input style + larger text area
+                multiline                                   // Enables multi-line input
+              />
+            </View>
+
+            {/* ==============================
+              FIELD 3: Course Picker
+              ============================== */}
+            <View style={styles.inputGroup}>
+              <Text style={styles.inputLabel}>Course</Text>
+              {/* Wrapper ensures consistent border radius and color for dropdown */}
+              <View style={styles.pickerShell}>
+                <Picker
+                  selectedValue={course}                    // Links picker selection to course state
+                  onValueChange={(val) => setCourse(val as Course)} // Updates the selected course
+                  style={styles.picker}
+                  dropdownIconColor={TOKENS.color.gold}     // Gold icon aligns with luxury theme
+                  mode="dropdown"
+                >
+                  {/* Dropdown options for dish category */}
+                  <Picker.Item label="Starters" value="Starters" />
+                  <Picker.Item label="Mains" value="Mains" />
+                  <Picker.Item label="Desserts" value="Desserts" />
+                </Picker>
+              </View>
+            </View>
+
+            {/* ==============================
+              FIELD 4: Price Input
+              ============================== */}
+            <View style={styles.inputGroup}>
+              <Text style={styles.inputLabel}>Price in Rand</Text>
+              <TextInput
+                value={price}
+                onChangeText={setPrice}
+                placeholder="e.g. 450"
+                placeholderTextColor={TOKENS.color.textMuted}
+                keyboardType="numeric"                      // Restricts input to numeric values
+                style={styles.input}
+              />
+            </View>
+
+            {/* ==============================
+              FIELD 5: Optional Image URL
+              ============================== */}
+            <View style={styles.inputGroup}>
+              <Text style={styles.inputLabel}>Image URL optional</Text>
+              <TextInput
+                value={image}
+                onChangeText={setImage}
+                placeholder="https://"
+                placeholderTextColor={TOKENS.color.textMuted}
+                autoCapitalize="none"                       // Keeps URLs lowercase (no auto-capitalization)
+                style={styles.input}
+              />
+              {/* Helper text educates users on image source standards */}
+              <Text style={styles.helperNote}>
+                You can paste image links from Unsplash or Pexels if you want a preview
+              </Text>
+            </View>
+
+            {/* ==============================
+              IMAGE PREVIEW SECTION
+              ============================== */}
+            {!!image && ( // Conditional rendering: shows only when image URL is present
+              <View style={{ marginBottom: TOKENS.space.lg }}>
+                <Text style={styles.inputLabel}>Image preview</Text>
+                <Image source={{ uri: image }} style={styles.preview} /> {/* Loads remote image */}
+              </View>
+            )}
+
+            {/* ==============================
+              BUTTON 1: Submit New Dish
+              ============================== */}
+            <TouchableOpacity
+              style={styles.primaryBtn}
+              onPress={handleAdd}                            // Triggers validation and item creation
+              accessibilityRole="button"
+              accessibilityLabel="Add new menu item"
+            >
+              <Text style={styles.primaryBtnText}>Add to menu</Text>
+            </TouchableOpacity>
+
+            {/* ==============================
+              BUTTON 2: Clear Form
+              ============================== */}
+            <TouchableOpacity
+              style={styles.ghostBtn}
+              onPress={handleClear}                          // Resets all form fields
+              accessibilityRole="button"
+              accessibilityLabel="Clear all input fields"
+            >
+              <Text style={styles.ghostBtnText}>Clear form</Text>
+            </TouchableOpacity>
+          </View>
+        </ScrollView>
+      </KeyboardAvoidingView>
+    </SafeAreaView>
+  );
+}

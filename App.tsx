@@ -608,3 +608,37 @@ const HomeScreen = ({ menuItems }: { menuItems: MenuItem[] }) => {
     </SafeAreaView>
   );
 };
+
+
+/**
+ * Title: Add Menu screen
+ * Responsibility: Allow Chef to add ad hoc items for experimentation during development
+ * Validation: Strong field checks, numeric price parsing, immediate feedback
+ * Note: Predefined seed remains faithful to the source document, this screen adds items on top for testing
+ */
+
+
+/*CODE ATTRIBUTION*/
+/*TITLE: React Native – TextInput and Form Handling Documentation*/
+/*AUTHOR: Meta Platforms, Inc.*/
+/*DATE: 15/10/2025*/
+/*VERSION: 0.76*/
+/*AVAILABLE: https://reactnative.dev/docs/textinput */
+
+/*CODE ATTRIBUTION*/
+/*TITLE: React Native – KeyboardAvoidingView and Platform Behavior*/
+/*AUTHOR: Meta Platforms, Inc.*/
+/*DATE: 15/10/2025*/
+/*VERSION: 0.76*/
+/*AVAILABLE: https://reactnative.dev/docs/keyboardavoidingview */
+
+/*CODE ATTRIBUTION*/
+/*TITLE: TypeScript React – useState Hook Typing and Controlled Components*/
+/*AUTHOR: Microsoft Corporation*/
+/*DATE: 15/10/2025*/
+/*VERSION: 5.3*/
+/*AVAILABLE: https://www.typescriptlang.org/docs/handbook/react.html */
+
+// AddMenuScreen component allows users to manually add new menu items to the app.
+// It provides form fields for dish name, description, course category, price, and optional image URL.
+// Props: menuItems (existing list) and setMenuItems (state updater function from parent).

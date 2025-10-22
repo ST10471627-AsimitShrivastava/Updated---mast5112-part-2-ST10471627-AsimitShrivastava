@@ -986,3 +986,87 @@ const App = () => {
     </NavigationContainer>
   );
 };
+
+/**
+ * Title: Stylesheet
+ * Look: Modern, classy, minimal, gold and black restaurant identity
+ * Touches: Deep shadows, gentle radii, refined typography scale, spacious layout rhythm
+ */
+const styles = StyleSheet.create({
+
+  /*CODE ATTRIBUTION*/
+  /*TITLE: React Native – StyleSheet API Documentation*/
+  /*AUTHOR: Meta Platforms, Inc.*/
+  /*DATE: 15/10/2025*/
+  /*VERSION: 0.76*/
+  /*AVAILABLE: https://reactnative.dev/docs/stylesheet */
+
+  /*CODE ATTRIBUTION*/
+  /*TITLE: React Native – Layout with Flexbox*/
+  /*AUTHOR: Meta Platforms, Inc.*/
+  /*DATE: 15/10/2025*/
+  /*VERSION: 0.76*/
+  /*AVAILABLE: https://reactnative.dev/docs/flexbox */
+
+  /*CODE ATTRIBUTION*/
+  /*TITLE: React Native – Text and Typography Styling*/
+  /*AUTHOR: Meta Platforms, Inc.*/
+  /*DATE: 15/10/2025*/
+  /*VERSION: 0.76*/
+  /*AVAILABLE: https://reactnative.dev/docs/text-style-props */
+
+  /*CODE ATTRIBUTION*/
+  /*TITLE: React Native – Colors and Theming Guide*/
+  /*AUTHOR: Meta Platforms, Inc.*/
+  /*DATE: 15/10/2025*/
+  /*VERSION: 0.76*/
+  /*AVAILABLE: https://reactnative.dev/docs/colors */
+
+  /*CODE ATTRIBUTION*/
+  /*TITLE: React Native – Shadows, Borders, and Elevation*/
+  /*AUTHOR: Meta Platforms, Inc.*/
+  /*DATE: 15/10/2025*/
+  /*VERSION: 0.76*/
+  /*AVAILABLE: https://reactnative.dev/docs/shadow-props */
+
+  /*CODE ATTRIBUTION*/
+  /*TITLE: React Native – Responsive Layouts and Dimensions*/
+  /*AUTHOR: Meta Platforms, Inc.*/
+  /*DATE: 15/10/2025*/
+  /*VERSION: 0.76*/
+  /*AVAILABLE: https://reactnative.dev/docs/dimensions */
+
+  /*CODE ATTRIBUTION*/
+  /*TITLE: TypeScript – Object Literal Typing and Constant Inference*/
+  /*AUTHOR: Microsoft Corporation*/
+  /*DATE: 15/10/2025*/
+  /*VERSION: 5.3*/
+  /*AVAILABLE: https://www.typescriptlang.org/docs/handbook/2/objects.html */
+
+  /*CODE ATTRIBUTION*/
+  /*TITLE: React Native – Accessibility and Readable Contrast Styling*/
+  /*AUTHOR: Meta Platforms, Inc.*/
+  /*DATE: 15/10/2025*/
+  /*VERSION: 0.76*/
+  /*AVAILABLE: https://reactnative.dev/docs/accessibility */
+
+  /*CODE ATTRIBUTION*/
+  /*TITLE: Expo Documentation – Theming and Cross-Platform UI Design*/
+  /*AUTHOR: Expo Documentation Team*/
+  /*DATE: 15/10/2025*/
+  /*VERSION: 50.0*/
+  /*AVAILABLE: https://docs.expo.dev/guides/using-themes/ */
+
+  /*CODE ATTRIBUTION*/
+  /*TITLE: React Native – View and ScrollView Styling Reference*/
+  /*AUTHOR: Meta Platforms, Inc.*/
+  /*DATE: 15/10/2025*/
+  /*VERSION: 0.76*/
+  /*AVAILABLE: https://reactnative.dev/docs/view-style-props */
+
+
+  // ==============================
+  // WELCOME SCREEN STYLES
+  // ==============================
+
+ 

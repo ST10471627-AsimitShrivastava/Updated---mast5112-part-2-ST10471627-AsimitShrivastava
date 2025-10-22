@@ -959,3 +959,30 @@ const App = () => {
     </Tab.Navigator>
   );
 
+
+  // ==============================
+  // CONDITIONAL NAVIGATION LOGIC
+  // ==============================
+
+  // Displays the WelcomeScreen first (acts as a splash / intro screen).
+  // Once the user taps “Enter the Menu,” it switches `current` to "main", loading the tab interface.
+  if (current === 'welcome') {
+    return (
+      <NavigationContainer>
+        {/* The WelcomeScreen receives a mock navigation prop to trigger transition manually. */}
+        <WelcomeScreen navigation={{ navigate: () => setCurrent('main') }} />
+      </NavigationContainer>
+    );
+  }
+
+  // ==============================
+  // MAIN APPLICATION RENDER
+  // ==============================
+
+  // Once the user moves past the welcome screen, the main tabbed interface is displayed.
+  return (
+    <NavigationContainer>
+      <MenuTabs />
+    </NavigationContainer>
+  );
+};

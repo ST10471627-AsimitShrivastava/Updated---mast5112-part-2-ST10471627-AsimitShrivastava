@@ -422,4 +422,84 @@ const WelcomeScreen = ({ navigation }: any) => {
 /*VERSION: 5.3*/
 /*AVAILABLE: https://www.typescriptlang.org/docs/handbook/2/functions.html */
 
+// Defines the HomeScreen component, responsible for displaying menu sections:
+// Starters, Mains, and Desserts, each rendered using a FlatList.
+const HomeScreen = ({ menuItems }: { menuItems: MenuItem[] }) => {
+
+  // useMemo is used to optimize performance by memoizing filtered results.
+  // Each list (starters, mains, desserts) is only recalculated when `menuItems` changes.
+  // This prevents unnecessary re-renders of FlatList and improves app efficiency.
+  const starters = useMemo(() => menuItems.filter(m => m.course === 'Starters'), [menuItems]);
+  const mains = useMemo(() => menuItems.filter(m => m.course === 'Mains'), [menuItems]);
+  const desserts = useMemo(() => menuItems.filter(m => m.course === 'Desserts'), [menuItems]);
+
+  // Helper function that returns a tinted gold background for section badges.
+  // Each badge represents a course type, enhancing visual distinction.
+  // The “22” at the end of each hex code adds transparency for a subtle overlay.
+  const badgeTint = (course: Course) => {
+    switch (course) {
+      case 'Starters':
+        return '#d4af37' + '22'; // Light transparent gold for starters
+      case 'Mains':
+        return '#d4af37' + '22'; // Same tone for visual consistency
+      case 'Desserts':
+        return '#d4af37' + '22'; // Matches branding’s gold identity
+      default:
+        return '#ffffff22';      // Fallback soft white for unclassified items
+    }
+  };
+
+  // Defines the renderMenuItem function which returns the layout for a single menu item card
+  // It is passed as the renderItem prop to FlatList, responsible for displaying each dish on screen
+  const renderMenuItem = ({ item }: { item: MenuItem }) => {
+    return (
+      // Main wrapper for a menu item card
+      // Uses consistent styling defined in styles.menuCard to maintain uniform appearance
+      <View style={styles.menuCard}>
+
+        {/* Conditional rendering:
+          If the dish includes an image URL, display it using <Image>.
+          If no image is available, show a styled placeholder to preserve layout consistency. */}
+        {item.image ? (
+          // Displays the dish image fetched via URL.
+          // React Native’s <Image> automatically handles network images with proper caching.
+          <Image source={{ uri: item.image }} style={styles.menuImage} />
+        ) : (
+          // Placeholder view shown when image data is missing.
+          // Maintains the same dimensions as the image component to avoid layout shifts.
+          <View style={[styles.menuImage, styles.menuImagePlaceholder]}>
+            <Text style={styles.menuImagePlaceholderText}>No image</Text>
+          </View>
+        )}
+
+        {/* Body section containing all textual content for the dish:
+          title, description, course badge, and price */}
+        <View style={styles.menuBody}>
+
+          {/* Header row aligns dish title and price side-by-side */}
+          <View style={styles.menuHeaderRow}>
+            {/* The dish name — styled prominently with bold typography */}
+            <Text style={styles.menuTitle}>{item.dishName}</Text>
+
+            {/* Displays the dish price formatted with the Rand symbol */}
+            <Text style={styles.menuPrice}>R{item.price}</Text>
+          </View>
+
+          {/* Displays the dish description underneath the header */}
+          <Text style={styles.menuDesc}>{item.description}</Text>
+
+          {/* Footer row containing the course badge and “View details” link */}
+          <View style={styles.menuFooterRow}>
+            {/* Course badge uses the badgeTint helper to determine gold-tinted background color */}
+            <View style={[styles.badge, { backgroundColor: badgeTint(item.course) }]}>
+              <Text style={styles.badgeText}>{item.course}</Text>
+            </View>
+
+            {/* Text label acting as a placeholder for future navigation to detailed dish info */}
+            <Text style={styles.seeMore}>View details</Text>
+          </View>
+        </View>
+      </View>
+    );
+  };
 

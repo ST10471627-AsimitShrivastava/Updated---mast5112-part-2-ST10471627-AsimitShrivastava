@@ -530,4 +530,81 @@ const HomeScreen = ({ menuItems }: { menuItems: MenuItem[] }) => {
   // Each Section groups and displays a specific menu category (e.g., Starters, Mains, Desserts).
   // It uses the FlatList component to render multiple menu cards under a single heading.
 
-  
+  const Section = ({ title, emoji, data }: { title: string; emoji: string; data: MenuItem[] }) => (
+    // Outer container for the section — provides padding and spacing between menu groups.
+    <View style={styles.section}>
+      {/* Header row showing the category emoji, title, and item count. 
+        The emoji adds visual character, while the count dynamically reflects how many dishes exist in that group. */}
+      <View style={styles.sectionHeader}>
+        <Text style={styles.sectionEmoji}>{emoji}</Text>
+        <Text style={styles.sectionTitle}>{title}</Text>
+        {/* Displays the number of items in parentheses (e.g., (5) for five dishes). */}
+        <Text style={styles.sectionCount}>({data.length})</Text>
+      </View>
+
+      {/* FlatList efficiently renders each menu card in this category.
+        - data: supplies the list of dishes filtered by course.
+        - keyExtractor: ensures each item has a unique key using its ID.
+        - renderItem: calls the renderMenuItem function defined earlier.
+        - scrollEnabled: set to false because the parent ScrollView already handles scrolling. */}
+      <FlatList
+        data={data}
+        keyExtractor={(it) => it.id}
+        renderItem={renderMenuItem}
+        scrollEnabled={false}
+      />
+    </View>
+  );
+  // Returns the rendered UI for the HomeScreen component.
+  // This layout combines a top bar, hero banner, and menu sections within a scrollable view.
+  return (
+    // SafeAreaView ensures that the layout avoids notches and system UI overlaps on iOS and Android.
+    <SafeAreaView style={styles.screen}>
+
+      {/* Top bar section displaying the app’s brand name, subtitle, and total item count. */}
+      <View style={styles.topBar}>
+
+        {/* Left side of the top bar — includes the chef emoji and brand text stacked vertically. */}
+        <View style={styles.brandLeft}>
+          <Text style={styles.topEmoji}>👨‍🍳</Text>
+          <View>
+            {/* Brand title displayed in bold gold to represent identity and luxury. */}
+            <Text style={styles.topTitle}>CHRISTOFFEL’S</Text>
+            {/* Subtitle for brand motto or tagline. */}
+            <Text style={styles.topSubtitle}>Culinary excellence</Text>
+          </View>
+        </View>
+
+        {/* Right side of the top bar — circular pill showing the total count of dishes available. */}
+        <View style={styles.countPill}>
+          {/* Displays numeric count of all menu items passed via props. */}
+          <Text style={styles.countNumber}>{menuItems.length}</Text>
+          {/* Label text beneath the number for clarity. */}
+          <Text style={styles.countLabel}>Items</Text>
+        </View>
+      </View>
+
+      {/* ScrollView allows users to scroll through the full list of sections vertically.
+        The scroll indicator is hidden for a cleaner and more elegant design. */}
+      <ScrollView style={{ flex: 1 }} showsVerticalScrollIndicator={false}>
+
+        {/* Hero banner introducing the restaurant’s essence and welcoming message. */}
+        <View style={styles.hero}>
+          <Text style={styles.heroTitle}>Welcome to Christoffel’s Kitchen</Text>
+          <Text style={styles.heroText}>
+            Discover seasonal plates and signature desserts curated by Chef Christoffel
+          </Text>
+        </View>
+
+        {/* Renders the three major menu sections using the Section component.
+          Each section uses an emoji for visual identity and data filtering for accuracy. */}
+        <Section title="Starters" emoji="🥗" data={starters} />
+        <Section title="Mains" emoji="🍽️" data={mains} />
+        <Section title="Desserts" emoji="🍰" data={desserts} />
+
+        {/* Adds bottom spacing so the scrollable content does not touch the screen edge. */}
+        <View style={{ height: TOKENS.space.xl }} />
+      </ScrollView>
+    </SafeAreaView>
+  );
+};

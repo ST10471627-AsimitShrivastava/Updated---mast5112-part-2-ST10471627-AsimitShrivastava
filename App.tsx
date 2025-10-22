@@ -142,3 +142,180 @@ const TOKENS = {
   },
 };
 
+
+/*CODE ATTRIBUTION*/
+/*TITLE: React Native – StyleSheet and Styling Documentation*/
+/*AUTHOR: Meta Platforms, Inc.*/
+/*DATE: 15/10/2025*/
+/*VERSION: 0.76*/
+/*AVAILABLE: https://reactnative.dev/docs/stylesheet */
+
+/*CODE ATTRIBUTION*/
+/*TITLE: React Native – Colors and Theming Guide*/
+/*AUTHOR: Meta Platforms, Inc.*/
+/*DATE: 15/10/2025*/
+/*VERSION: 0.76*/
+/*AVAILABLE: https://reactnative.dev/docs/colors */
+
+/*CODE ATTRIBUTION*/
+/*TITLE: TypeScript Handbook – Object and Constant Typing*/
+/*AUTHOR: Microsoft Corporation*/
+/*DATE: 15/10/2025*/
+/*VERSION: 5.3*/
+/*AVAILABLE: https://www.typescriptlang.org/docs/handbook/2/objects.html */
+
+/*CODE ATTRIBUTION*/
+/*TITLE: React Native – Shadows, Elevation, and Layout Design*/
+/*AUTHOR: Meta Platforms, Inc.*/
+/*DATE: 15/10/2025*/
+/*VERSION: 0.76*/
+/*AVAILABLE: https://reactnative.dev/docs/shadow-props */
+
+/*CODE ATTRIBUTION*/
+/*TITLE: React Native – Design Systems and Theming with Constants*/
+/*AUTHOR: Expo Documentation Team*/
+/*DATE: 15/10/2025*/
+/*VERSION: 50.0*/
+/*AVAILABLE: https://docs.expo.dev/guides/using-themes/ */
+
+
+// Screen sizing for responsive media
+const { width } = Dimensions.get('window');
+
+// Title: Bottom tab navigator setup
+// Rationale: Simple two tab layout, Home and Add Menu, uses emoji icons to avoid additional libraries
+const Tab = createBottomTabNavigator();
+
+/**
+ * Title: Predefined menu items
+ * Provenance: Values copied from Menu Types.docx, including dish names, descriptions, prices, and image URLs
+ * Integrity note: Names, descriptions, prices, and links are kept faithful to the source document :contentReference[oaicite:2]{index=2}.
+ */
+const predefinedItems: MenuItem[] = [
+  // Starters
+  {
+    id: 'starter-1',
+    dishName: 'BRUSCHETTA',
+    description: 'With tomatos and onions',
+    course: 'Starters',
+    price: 300,
+    image: 'https://images.unsplash.com/photo-1667207888295-94752c1ee4e7?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=774', // :contentReference[oaicite:3]{index=3}
+  },
+  {
+    id: 'starter-2',
+    dishName: 'FRIED MUSHROOMS',
+    description: 'With fried potatoes, vegetables, and olive oil',
+    course: 'Starters',
+    price: 350,
+    image: 'https://images.unsplash.com/photo-1651326752381-c5bcaacb2ba0?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1740', // :contentReference[oaicite:4]{index=4}
+  },
+  {
+    id: 'starter-3',
+    dishName: 'MAGHERITTA PIZZA',
+    description: 'Tamaot sauce and cheese',
+    course: 'Starters',
+    price: 400,
+    image: 'https://images.unsplash.com/photo-1747654168933-a0a0c9d78d68?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=774', // :contentReference[oaicite:5]{index=5}
+  },
+  {
+    id: 'starter-4',
+    dishName: 'SPAGHETTI',
+    description: 'Chicken, tamato, and parsley',
+    course: 'Starters',
+    price: 450,
+    image: 'https://images.unsplash.com/photo-1673789274287-5441868398cc?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1584', // :contentReference[oaicite:6]{index=6}
+  },
+  {
+    id: 'starter-5',
+    dishName: 'SCRAMBLED EGGS',
+    description: 'Bacon, toast, and basil',
+    course: 'Starters',
+    price: 500,
+    image: 'https://plus.unsplash.com/premium_photo-1699078192597-d06d3e4f6af1?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1271', // :contentReference[oaicite:7]{index=7}
+  },
+
+  // Mains
+  {
+    id: 'main-1',
+    dishName: 'MUSHROOM RISOTTO',
+    description: 'Truffle, parmesan, rice, cheese, fungi',
+    course: 'Mains',
+    price: 500,
+    image: 'https://images.unsplash.com/photo-1633964913295-ceb43826e7c9?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1740', // :contentReference[oaicite:8]{index=8}
+  },
+  {
+    id: 'main-2',
+    dishName: 'CHEESE BURGER',
+    description: 'Bun, patty, tomato, cheese, lettuce, pepper, and sesame',
+    course: 'Mains',
+    price: 550,
+    image: 'https://images.unsplash.com/photo-1571091718767-18b5b1457add?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1744', // :contentReference[oaicite:9]{index=9}
+  },
+  {
+    id: 'main-3',
+    dishName: 'BUTTER CHICKEN',
+    description: 'Chicken, yogurt, spices ginger, and garlic, onions, and cream',
+    course: 'Mains',
+    price: 600,
+    image: 'https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1740', // :contentReference[oaicite:10]{index=10}
+  },
+  {
+    id: 'main-4',
+    dishName: 'A RED THAI CURRY WITH VEGETABLES',
+    description: 'Rice, peppers, mushrooms',
+    course: 'Mains',
+    price: 650,
+    image: 'https://images.unsplash.com/photo-1720949579179-b4d04403f548?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1321', // :contentReference[oaicite:11]{index=11}
+  },
+  {
+    id: 'main-5',
+    dishName: 'SALAD',
+    description: 'Red tomatos, yellow tomatos, cabbage, lettuce, cheese, croutons',
+    course: 'Mains',
+    price: 700,
+    image: 'https://images.unsplash.com/photo-1546793665-c74683f339c1?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=774', // :contentReference[oaicite:12]{index=12}
+  },
+
+  // Desserts
+  {
+    id: 'dessert-1',
+    dishName: 'CHOCOLATE BROWNEY WITH ICE CREAM',
+    description: 'Vanilla ice cream, browney, and chocolate syprup',
+    course: 'Desserts',
+    price: 300,
+    image: 'https://images.unsplash.com/photo-1624353365286-3f8d62daad51?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&fm=jpg&q=60&w=3000', // :contentReference[oaicite:13]{index=13}
+  },
+  {
+    id: 'dessert-2',
+    dishName: 'CHOCOLATE CAKE',
+    description: 'Chocoalte cake with brown icing',
+    course: 'Desserts',
+    price: 350,
+    image: 'https://images.unsplash.com/photo-1606313564200-e75d5e30476c?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=774', // :contentReference[oaicite:14]{index=14}
+  },
+  {
+    id: 'dessert-3',
+    dishName: 'PANCAKES',
+    description: 'Pancakes, cherries, grapes, syrup',
+    course: 'Desserts',
+    price: 400,
+    image: 'https://images.unsplash.com/photo-1506084868230-bb9d95c24759?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=774', // :contentReference[oaicite:15]{index=15}
+  },
+  {
+    id: 'dessert-4',
+    dishName: 'RED SORBET',
+    description: 'Strawberry',
+    course: 'Desserts',
+    price: 450,
+    image: 'https://images.unsplash.com/photo-1650553448920-9432f8086905?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=774', // :contentReference[oaicite:16]{index=16}
+  },
+  {
+    id: 'dessert-5',
+    dishName: 'RASBERRY YOGHURT',
+    description: 'Raspberries, yoghurt, cream',
+    course: 'Desserts',
+    price: 500,
+    image: 'https://images.unsplash.com/photo-1635197026382-69228964b695?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1744', // :contentReference[oaicite:17]{index=17}
+  },
+];
+
